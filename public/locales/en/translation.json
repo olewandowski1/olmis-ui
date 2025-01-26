@@ -1,0 +1,21 @@
+{
+  "auth": {
+    "LoginForm": {
+      "title": "Logistics Management Information System",
+      "subtitle": "Login to your account.",
+      "usernameLabel": "Username",
+      "passwordLabel": "Password",
+      "forgotPassword": "Forgot your password?",
+      "loginButton": "Login",
+      "preferences": "Preferences",
+      "language": "Language",
+      "poweredBy": "The software is powered by",
+      "appName": "OpenLMIS",
+      "usernameRequired": "Username is required",
+      "maxLengthExceeded": "Maximum length of {max} characters exceeded",
+      "passwordRequired": "Password is required",
+      "usernamePlaceholder": "Enter your username",
+      "passwordPlaceholder": "Enter your password"
+    }
+  }
+}

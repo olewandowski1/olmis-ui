@@ -1,0 +1,21 @@
+{
+  "auth": {
+    "LoginForm": {
+      "title": "Sistema de Gestão de Informação Logística",
+      "subtitle": "Entre na sua conta.",
+      "usernameLabel": "Nome de usuário",
+      "passwordLabel": "Senha",
+      "forgotPassword": "Esqueceu sua senha?",
+      "loginButton": "Entrar",
+      "preferences": "Preferências",
+      "language": "Idioma",
+      "poweredBy": "O software é desenvolvido por",
+      "appName": "OpenLMIS",
+      "usernameRequired": "Nome de usuário é obrigatório",
+      "maxLengthExceeded": "Número máximo de caracteres ({max}) excedido",
+      "passwordRequired": "Senha é obrigatória",
+      "usernamePlaceholder": "Digite seu nome de usuário",
+      "passwordPlaceholder": "Digite sua senha"
+    }
+  }
+}
