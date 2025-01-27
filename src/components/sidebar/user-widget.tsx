@@ -16,8 +16,8 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  useSidebar,
 } from '@/components/ui/sidebar';
-import { User } from '@/lib/types';
 import {
   ChevronsUpDown,
   LogOut,
@@ -27,12 +27,16 @@ import {
 } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
-type UserWidgetProps = {
-  user: User;
+const SAMPLE_USER = {
+  name: 'John Doe',
+  email: 'johndoe@gmail.com',
+  avatar: undefined,
 };
 
-export const UserWidget: React.FC<UserWidgetProps> = ({ user }) => {
-  const { t } = useTranslation('UserWidget');
+export const UserWidget = () => {
+  const { t } = useTranslation('translation', { keyPrefix: 'app.UserWidget' });
+  const { state } = useSidebar();
+  const isExpanded = state === 'expanded';
 
   return (
     <SidebarMenu>
@@ -41,71 +45,59 @@ export const UserWidget: React.FC<UserWidgetProps> = ({ user }) => {
           <DropdownMenuTrigger asChild>
             <SidebarMenuButton
               size='lg'
-              className='data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground'
+              className='data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground flex items-center justify-center cursor-pointer'
             >
-              <Avatar className='w-8 h-8 rounded-lg'>
-                <AvatarImage src={user.avatar} alt={user.name} />
+              <Avatar className='rounded-lg size-9'>
+                <AvatarImage src={SAMPLE_USER.avatar} alt={SAMPLE_USER.name} />
                 <AvatarFallback className='rounded-lg'>
-                  <UserRound
-                    size={16}
-                    strokeWidth={2}
-                    className='opacity-60'
-                    aria-hidden='true'
-                  />
+                  <UserRound size={20} strokeWidth={2} aria-hidden='true' />
                 </AvatarFallback>
               </Avatar>
-              <div className='grid flex-1 text-sm leading-tight text-left'>
-                <span className='font-semibold truncate'>{user.name}</span>
-                <span className='text-xs truncate'>{user.email}</span>
-              </div>
-              <ChevronsUpDown className='ml-auto size-4' />
+              {isExpanded && (
+                <>
+                  <div className='grid flex-1 text-sm leading-tight text-left'>
+                    <span className='font-semibold truncate'>
+                      {SAMPLE_USER.name}
+                    </span>
+                    <span className='text-xs truncate'>
+                      {SAMPLE_USER.email}
+                    </span>
+                  </div>
+                  <ChevronsUpDown className='ml-auto size-4' />
+                </>
+              )}
             </SidebarMenuButton>
           </DropdownMenuTrigger>
 
           <DropdownMenuContent
-            className='w-[--radix-dropdown-menu-trigger-width] min-w-56 rounded-lg'
+            className='w-(--radix-dropdown-menu-trigger-width) min-w-56 rounded-lg'
             align='end'
             sideOffset={4}
           >
             <DropdownMenuLabel className='flex items-start gap-2'>
-              <Avatar className='w-8 h-8 rounded-lg'>
-                <AvatarImage src={user.avatar} alt={user.name} />
+              <Avatar className='rounded-lg size-9'>
+                <AvatarImage src={SAMPLE_USER.avatar} alt={SAMPLE_USER.name} />
                 <AvatarFallback className='rounded-lg'>
-                  <UserRound
-                    size={16}
-                    strokeWidth={2}
-                    className='opacity-60'
-                    aria-hidden='true'
-                  />
+                  <UserRound size={20} strokeWidth={2} aria-hidden='true' />
                 </AvatarFallback>
               </Avatar>
               <div className='flex flex-col min-w-0'>
                 <span className='text-sm font-medium truncate text-foreground'>
-                  {user.name}
+                  {SAMPLE_USER.name}
                 </span>
                 <span className='text-xs font-normal truncate text-muted-foreground'>
-                  {user.email}
+                  {SAMPLE_USER.email}
                 </span>
               </div>
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
               <DropdownMenuItem>
-                <ShieldCheck
-                  size={16}
-                  strokeWidth={2}
-                  className='opacity-60'
-                  aria-hidden='true'
-                />
+                <ShieldCheck size={16} strokeWidth={2} aria-hidden='true' />
                 <span>{t('roles')}</span>
               </DropdownMenuItem>
               <DropdownMenuItem>
-                <Settings
-                  size={16}
-                  strokeWidth={2}
-                  className='opacity-60'
-                  aria-hidden='true'
-                />
+                <Settings size={16} strokeWidth={2} aria-hidden='true' />
                 <span>{t('settings')}</span>
               </DropdownMenuItem>
             </DropdownMenuGroup>
@@ -116,21 +108,16 @@ export const UserWidget: React.FC<UserWidgetProps> = ({ user }) => {
             <DropdownMenuGroup>
               <div className='px-2 py-1.5 text-sm flex justify-between'>
                 <span>{t('theme')}</span>
-                <ModeToggle />
+                <ModeToggle className='size-8' />
               </div>
               <div className='px-2 py-1.5 text-sm flex justify-between'>
                 <span>{t('language')}</span>
-                <LanguagePicker />
+                <LanguagePicker className='h-7' />
               </div>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuItem>
-              <LogOut
-                size={16}
-                strokeWidth={2}
-                className='opacity-60'
-                aria-hidden='true'
-              />
+              <LogOut size={16} strokeWidth={2} aria-hidden='true' />
               <span>{t('logout')}</span>
             </DropdownMenuItem>
           </DropdownMenuContent>

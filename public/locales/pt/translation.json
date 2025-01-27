@@ -17,5 +17,29 @@
       "usernamePlaceholder": "Digite seu nome de usuário",
       "passwordPlaceholder": "Digite sua senha"
     }
+  },
+  "app": {
+    "AppSidebar": {
+      "menu": "Menu"
+    },
+    "AppWidget": {
+      "poc": "Prova de Conceito"
+    },
+    "UserWidget": {
+      "roles": "Funções",
+      "settings": "Configurações",
+      "preferences": "Preferências",
+      "theme": "Tema",
+      "language": "Idioma",
+      "logout": "Sair"
+    },
+    "MainRoutes": {
+      "home": "Início"
+    },
+    "MenuRoutes": {
+      "administration": "Administração",
+      "home": "Início",
+      "users": "Usuários"
+    }
   }
 }

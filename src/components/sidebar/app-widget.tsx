@@ -5,9 +5,11 @@ import {
   useSidebar,
 } from '@/components/ui/sidebar';
 import { Link } from '@tanstack/react-router';
-import { Boxes, ChevronRight } from 'lucide-react';
+import { ChevronRight } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 export const AppWidget = () => {
+  const { t } = useTranslation('translation', { keyPrefix: 'app.AppWidget' });
   const { state } = useSidebar();
   const isExpanded = state === 'expanded';
 
@@ -17,16 +19,20 @@ export const AppWidget = () => {
         <Link to='/home'>
           <SidebarMenuButton
             size='lg'
-            className='data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground'
+            className='data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground flex items-center justify-center cursor-pointer'
           >
-            <Boxes className='size-4 shrink-0' />
+            <div className='flex items-center justify-center rounded-lg aspect-square size-9 bg-muted text-sidebar-primary-foreground'>
+              <img
+                src='/olmis.png'
+                alt='OpenLMIS Logo'
+                className='shrink-0 size-5'
+              />
+            </div>
             {isExpanded && (
               <>
                 <div className='grid flex-1 text-sm leading-tight text-left'>
                   <span className='font-semibold truncate'> OpenLMIS </span>
-                  <span className='text-xs truncate'>
-                    Signed as: __administrator__
-                  </span>
+                  <span className='text-xs truncate'> {t('poc')} </span>
                 </div>
                 <ChevronRight className='ml-auto' />
               </>

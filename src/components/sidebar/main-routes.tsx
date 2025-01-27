@@ -1,34 +1,35 @@
-'use client';
-
 import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
 } from '@/components/ui/sidebar';
-import { Link } from '@tanstack/react-router';
+import { cn } from '@/lib/utils';
+import { Link, useLocation } from '@tanstack/react-router';
+import { Home } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
-type MainRoutesProps = {
-  mainRoutes: {
-    key: string;
-    href: string;
-    icon: React.FC;
-    isActive: boolean;
-  }[];
-};
+const SAMPLE_ROUTES = [
+  {
+    key: 'home',
+    href: '/home',
+    icon: Home,
+    isActive: true,
+  },
+];
 
-export const MainRoutes: React.FC<MainRoutesProps> = ({ mainRoutes }) => {
-  const { t } = useTranslation('routes');
+export const MainRoutes = () => {
+  const { t } = useTranslation('translation', { keyPrefix: 'app.MainRoutes' });
+  const { pathname } = useLocation();
 
   return (
     <SidebarMenu>
-      {mainRoutes.map((route) => (
+      {SAMPLE_ROUTES.map((route) => (
         <SidebarMenuItem key={route.key}>
           <SidebarMenuButton
             asChild
-            // className={cn('', {
-            //   'bg-sidebar-accent': pathname === route.href,
-            // })}
+            className={cn('', {
+              'bg-sidebar-accent': pathname === route.href,
+            })}
           >
             <Link to={route.href}>
               <route.icon />

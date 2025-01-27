@@ -17,5 +17,29 @@
       "usernamePlaceholder": "Enter your username",
       "passwordPlaceholder": "Enter your password"
     }
+  },
+  "app": {
+    "AppSidebar": {
+      "menu": "Menu"
+    },
+    "AppWidget": {
+      "poc": "Proof of Concept"
+    },
+    "UserWidget": {
+      "roles": "Roles",
+      "settings": "Settings",
+      "preferences": "Preferences",
+      "theme": "Theme",
+      "language": "Language",
+      "logout": "Log out"
+    },
+    "MainRoutes": {
+      "home": "Home"
+    },
+    "MenuRoutes": {
+      "administration": "Administration",
+      "home": "Home",
+      "users": "Users"
+    }
   }
 }
