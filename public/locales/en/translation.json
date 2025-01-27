@@ -19,6 +19,10 @@
     }
   },
   "app": {
+    "ProtectedLayout": {
+      "notifications": "Notifications",
+      "logout": "Log out"
+    },
     "AppSidebar": {
       "menu": "Menu"
     },
@@ -40,6 +44,12 @@
       "administration": "Administration",
       "home": "Home",
       "users": "Users"
+    },
+    "NotificationButton": {
+      "notifications": "Notifications",
+      "openNotifications": "Open notifications",
+      "markAllAsRead": "Mark all as read",
+      "unread": "Unread"
     }
   }
 }

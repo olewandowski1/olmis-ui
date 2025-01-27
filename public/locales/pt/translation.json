@@ -40,6 +40,12 @@
       "administration": "Administração",
       "home": "Início",
       "users": "Usuários"
+    },
+    "NotificationButton": {
+      "notifications": "Notificações",
+      "openNotifications": "Abrir notificações",
+      "markAllAsRead": "Marcar todas como lidas",
+      "unread": "Não lida"
     }
   }
 }
