@@ -67,7 +67,7 @@ export const AppSidebar: React.FC<React.ComponentProps<typeof Sidebar>> = ({
   return (
     <Sidebar collapsible='icon' {...props}>
       <SidebarHeader>
-        <AppWidget app={SAMPLE_DATA.app} />
+        <AppWidget />
       </SidebarHeader>
       <SidebarContent>
         <SidebarGroup>
