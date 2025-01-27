@@ -17,6 +17,11 @@ const SAMPLE_ROUTES = [
   },
 ];
 
+/**
+ * @name MainRoutes
+ * @description
+ * Main routes for the application. It displays the main routes in the sidebar. Non-collapsible.
+ */
 export const MainRoutes = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'app.MainRoutes' });
   const { pathname } = useLocation();

@@ -1,5 +1,3 @@
-'use client';
-
 import { LanguagePicker } from '@/components/language-picker';
 import { ModeToggle } from '@/components/mode-toggle';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
@@ -33,6 +31,12 @@ const SAMPLE_USER = {
   avatar: undefined,
 };
 
+/**
+ * @name UserWidget
+ * @description
+ * User widget for the sidebar. It displays the user's avatar, name, and email. It also
+ * provides a dropdown menu for user actions.
+ */
 export const UserWidget = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'app.UserWidget' });
   const { state } = useSidebar();

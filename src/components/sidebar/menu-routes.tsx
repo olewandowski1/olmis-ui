@@ -1,5 +1,3 @@
-'use client';
-
 import {
   Collapsible,
   CollapsibleContent,
@@ -31,6 +29,11 @@ const SAMPLE_ROUTES = [
   },
 ];
 
+/**
+ * @name MenuRoutes
+ * @description
+ * Sidebar menu routes. It displays the menu items. Collapsible.
+ */
 export const MenuRoutes = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'app.MenuRoutes' });
   const { pathname } = useLocation();

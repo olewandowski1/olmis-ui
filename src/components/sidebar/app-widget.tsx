@@ -8,6 +8,11 @@ import { Link } from '@tanstack/react-router';
 import { ChevronRight } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
+/**
+ * @name AppWidget
+ * @description
+ * Widget for the application. It displays the OpenLMIS logo. It is used in the sidebar header.
+ */
 export const AppWidget = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'app.AppWidget' });
   const { state } = useSidebar();

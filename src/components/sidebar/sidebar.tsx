@@ -13,6 +13,11 @@ import {
 } from '@/components/ui/sidebar';
 import { useTranslation } from 'react-i18next';
 
+/**
+ * @name AppSidebar
+ * @description
+ * Sidebar for the application.
+ */
 export const AppSidebar: React.FC<React.ComponentProps<typeof Sidebar>> = ({
   ...props
 }) => {
