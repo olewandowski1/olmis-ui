@@ -16,6 +16,8 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from '@/components/ui/sidebar';
+import { useAuth } from '@/hooks/use-auth';
+import { useNavigate } from '@tanstack/react-router';
 import {
   ChevronsUpDown,
   LogOut,
@@ -39,8 +41,17 @@ const SAMPLE_USER = {
  */
 export const UserWidget = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'app.UserWidget' });
+
+  const { logout } = useAuth();
+  const navigate = useNavigate();
+
   const { state } = useSidebar();
   const isExpanded = state === 'expanded';
+
+  const handleLogout = async () => {
+    await logout();
+    navigate({ to: '/login' });
+  };
 
   return (
     <SidebarMenu>
@@ -120,7 +131,7 @@ export const UserWidget = () => {
               </div>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>
+            <DropdownMenuItem onClick={handleLogout}>
               <LogOut size={16} strokeWidth={2} aria-hidden='true' />
               <span>{t('logout')}</span>
             </DropdownMenuItem>

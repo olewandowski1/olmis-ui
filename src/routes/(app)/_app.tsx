@@ -7,7 +7,8 @@ import {
   SidebarTrigger,
 } from '@/components/ui/sidebar';
 import { Typography } from '@/components/ui/typography';
-import { createFileRoute, Outlet } from '@tanstack/react-router';
+import { useAuth } from '@/hooks/use-auth';
+import { createFileRoute, Outlet, useNavigate } from '@tanstack/react-router';
 import { LogOut } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
@@ -25,6 +26,14 @@ function ProtectedLayout() {
     keyPrefix: 'app.ProtectedLayout',
   });
 
+  const { logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    await logout();
+    navigate({ to: '/login' });
+  };
+
   return (
     <SidebarProvider>
       <AppSidebar />
@@ -34,7 +43,7 @@ function ProtectedLayout() {
 
           <div className='flex gap-4 ml-auto'>
             <NotificationButton />
-            <Button className='ml-auto' size='sm'>
+            <Button className='ml-auto' size='sm' onClick={handleLogout}>
               <LogOut />
               <Typography.Small> {t('logout')} </Typography.Small>
             </Button>

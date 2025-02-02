@@ -1,5 +1,10 @@
 {
   "auth": {
+    "useAuth": {
+      "loginError": "An error occurred while logging in. Please try again.",
+      "loginSuccess": "You have successfully logged in.",
+      "logoutError": "An error occurred while logging out. Please try again."
+    },
     "LoginForm": {
       "title": "Logistics Management Information System",
       "subtitle": "Login to your account.",

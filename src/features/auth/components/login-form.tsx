@@ -11,7 +11,9 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Typography } from '@/components/ui/typography';
+import { useAuth } from '@/hooks/use-auth';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useNavigate } from '@tanstack/react-router';
 import { TFunction } from 'i18next';
 import { Eye, EyeOff, Loader2 } from 'lucide-react';
 import { useState } from 'react';
@@ -35,8 +37,12 @@ const schemaWithTranslations = (
 
 export const LoginForm = () => {
   const [isVisible, setIsVisible] = useState<boolean>(false);
+  const navigate = useNavigate();
+  const { login } = useAuth();
+
   const { t } = useTranslation('translation', { keyPrefix: 'auth.LoginForm' });
   const loginSchema = schemaWithTranslations(t);
+
   type LoginFormData = z.infer<typeof loginSchema>;
 
   const form = useForm<LoginFormData>({
@@ -48,12 +54,8 @@ export const LoginForm = () => {
   });
 
   const onSubmit = async (data: LoginFormData) => {
-    try {
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      console.log(data);
-    } catch (error) {
-      console.error(['[LOGIN_FORM]: Error while logging in', error]);
-    }
+    await login(data);
+    navigate({ to: '/home' });
   };
 
   const toggleVisibility = () =>

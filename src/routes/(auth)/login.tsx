@@ -1,11 +1,13 @@
 import { ModeToggle } from '@/components/mode-toggle';
 import { LoginForm } from '@/features/auth/components/login-form';
-import { IS_AUTHENTICATED } from '@/lib/mock-data';
+import { useAuthStore } from '@/store/auth';
 import { createFileRoute, redirect } from '@tanstack/react-router';
 
 export const Route = createFileRoute('/(auth)/login')({
   beforeLoad: async () => {
-    if (IS_AUTHENTICATED) {
+    const { isAuthenticated } = useAuthStore.getState();
+
+    if (isAuthenticated) {
       throw redirect({
         to: '/home',
       });

@@ -1,5 +1,10 @@
 {
   "auth": {
+    "useAuth": {
+      "loginError": "Ocorreu um erro ao fazer login. Por favor, tente novamente.",
+      "loginSuccess": "Você fez login com sucesso.",
+      "logoutError": "Ocorreu um erro ao sair. Por favor, tente novamente."
+    },
     "LoginForm": {
       "title": "Sistema de Gestão de Informação Logística",
       "subtitle": "Entre na sua conta.",
@@ -19,6 +24,10 @@
     }
   },
   "app": {
+    "ProtectedLayout": {
+      "notifications": "Notificações",
+      "logout": "Sair"
+    },
     "AppSidebar": {
       "menu": "Menu"
     },

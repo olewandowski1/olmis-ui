@@ -1,5 +1,6 @@
 import { RootLayout } from '@/components/root-layout';
-import { IS_AUTHENTICATED, SHOW_DEVTOOLS } from '@/lib/mock-data';
+import { SHOW_DEVTOOLS } from '@/lib/mock-data';
+import { useAuthStore } from '@/store/auth';
 import type { QueryClient } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import {
@@ -16,7 +17,9 @@ export const Route = createRootRouteWithContext<{
   queryClient: QueryClient;
 }>()({
   beforeLoad: async ({ location }) => {
-    if (!PUBLIC_PAGES.includes(location.pathname) && !IS_AUTHENTICATED) {
+    const { isAuthenticated } = useAuthStore.getState();
+
+    if (!PUBLIC_PAGES.includes(location.pathname) && !isAuthenticated) {
       throw redirect({
         to: '/login',
       });
