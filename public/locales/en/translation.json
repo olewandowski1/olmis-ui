@@ -1,6 +1,6 @@
 {
   "auth": {
-    "useAuth": {
+    "useAuthActions": {
       "loginError": "An error occurred while logging in. Please try again.",
       "loginSuccess": "You have successfully logged in.",
       "logoutError": "An error occurred while logging out. Please try again."

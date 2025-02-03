@@ -1,11 +1,11 @@
 import { ModeToggle } from '@/components/mode-toggle';
 import { LoginForm } from '@/features/auth/components/login-form';
-import { useAuthStore } from '@/store/auth';
+import { useLoginData } from '@/features/auth/store/login-data';
 import { createFileRoute, redirect } from '@tanstack/react-router';
 
 export const Route = createFileRoute('/(auth)/login')({
   beforeLoad: async () => {
-    const { isAuthenticated } = useAuthStore.getState();
+    const { isAuthenticated } = useLoginData.getState();
 
     if (isAuthenticated) {
       throw redirect({

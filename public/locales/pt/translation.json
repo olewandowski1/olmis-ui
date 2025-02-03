@@ -1,6 +1,6 @@
 {
   "auth": {
-    "useAuth": {
+    "useAuthActions": {
       "loginError": "Ocorreu um erro ao fazer login. Por favor, tente novamente.",
       "loginSuccess": "Você fez login com sucesso.",
       "logoutError": "Ocorreu um erro ao sair. Por favor, tente novamente."
@@ -17,7 +17,7 @@
       "poweredBy": "O software é desenvolvido por",
       "appName": "OpenLMIS",
       "usernameRequired": "Nome de usuário é obrigatório",
-      "maxLengthExceeded": "Número máximo de caracteres ({max}) excedido",
+      "maxLengthExceeded": "Número máximo de {max} caracteres excedido",
       "passwordRequired": "Senha é obrigatória",
       "usernamePlaceholder": "Digite seu nome de usuário",
       "passwordPlaceholder": "Digite sua senha"

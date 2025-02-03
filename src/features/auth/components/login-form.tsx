@@ -11,7 +11,7 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Typography } from '@/components/ui/typography';
-import { useAuth } from '@/hooks/use-auth';
+import { useAuthActions } from '@/features/auth/hooks/use-auth-actions';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useNavigate } from '@tanstack/react-router';
 import { TFunction } from 'i18next';
@@ -38,7 +38,7 @@ const schemaWithTranslations = (
 export const LoginForm = () => {
   const [isVisible, setIsVisible] = useState<boolean>(false);
   const navigate = useNavigate();
-  const { login } = useAuth();
+  const { login } = useAuthActions();
 
   const { t } = useTranslation('translation', { keyPrefix: 'auth.LoginForm' });
   const loginSchema = schemaWithTranslations(t);

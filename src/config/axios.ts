@@ -1,4 +1,4 @@
-import { useAuthStore } from '@/store/auth';
+import { useLoginData } from '@/features/auth/store/login-data';
 import axios, { AxiosRequestConfig } from 'axios';
 
 export class AxiosInstanceError extends Error {
@@ -25,7 +25,7 @@ const axiosInstance = axios.create(axiosConfig);
 axiosInstance.interceptors.request.use(
   (config) => {
     // Get the access token from the Zustand store
-    const { accessToken } = useAuthStore.getState();
+    const { accessToken } = useLoginData.getState();
 
     // If an access token is available, add it to the request headers.
     if (accessToken) {

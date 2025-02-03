@@ -16,7 +16,7 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from '@/components/ui/sidebar';
-import { useAuth } from '@/hooks/use-auth';
+import { useAuthActions } from '@/features/auth/hooks/use-auth-actions';
 import { useNavigate } from '@tanstack/react-router';
 import {
   ChevronsUpDown,
@@ -42,7 +42,7 @@ const SAMPLE_USER = {
 export const UserWidget = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'app.UserWidget' });
 
-  const { logout } = useAuth();
+  const { logout } = useAuthActions();
   const navigate = useNavigate();
 
   const { state } = useSidebar();
