@@ -12,6 +12,7 @@ import {
   SidebarRail,
 } from '@/components/ui/sidebar';
 import { useTranslation } from 'react-i18next';
+import { Separator } from '../ui/separator';
 
 /**
  * @name AppSidebar
@@ -28,6 +29,7 @@ export const AppSidebar: React.FC<React.ComponentProps<typeof Sidebar>> = ({
       <SidebarHeader>
         <AppWidget />
       </SidebarHeader>
+      <Separator />
       <SidebarContent>
         <SidebarGroup>
           <MainRoutes />

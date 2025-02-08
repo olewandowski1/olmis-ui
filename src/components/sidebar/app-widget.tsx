@@ -26,7 +26,7 @@ export const AppWidget = () => {
             size='lg'
             className='data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground flex items-center justify-center cursor-pointer'
           >
-            <div className='flex items-center justify-center rounded-lg aspect-square size-9 bg-primary text-sidebar-primary-foreground'>
+            <div className='flex items-center justify-center rounded-lg aspect-square size-9 bg-muted text-sidebar-primary-foreground'>
               <img
                 src='/olmis.png'
                 alt='OpenLMIS Logo'

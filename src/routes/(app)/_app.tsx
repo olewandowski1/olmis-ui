@@ -1,6 +1,7 @@
 import { NotificationButton } from '@/components/notification-button';
 import { AppSidebar } from '@/components/sidebar/sidebar';
 import { Button } from '@/components/ui/button';
+import { Separator } from '@/components/ui/separator';
 import {
   SidebarInset,
   SidebarProvider,
@@ -38,8 +39,10 @@ function ProtectedLayout() {
     <SidebarProvider>
       <AppSidebar />
       <SidebarInset>
-        <header className='flex h-16 shrink-0 items-center gap-4 transition-[width,height] ease-linear border-b group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12 px-2'>
+        <header className='flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12 p-2'>
           <SidebarTrigger />
+
+          <Separator orientation='vertical' className='h-4' />
 
           <div className='flex gap-4 ml-auto'>
             <NotificationButton />
@@ -49,6 +52,7 @@ function ProtectedLayout() {
             </Button>
           </div>
         </header>
+        <Separator />
         <Outlet />
       </SidebarInset>
     </SidebarProvider>

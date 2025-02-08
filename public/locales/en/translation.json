@@ -55,6 +55,10 @@
       "openNotifications": "Open notifications",
       "markAllAsRead": "Mark all as read",
       "unread": "Unread"
+    },
+    "HomePage": {
+      "systemName": "Logistics Management Information System",
+      "explanation": "Here's an overview of the system."
     }
   }
 }

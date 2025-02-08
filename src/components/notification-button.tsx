@@ -4,7 +4,6 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from '@/components/ui/popover';
-import { cn } from '@/lib/utils';
 import { Bell } from 'lucide-react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -111,14 +110,7 @@ export const NotificationButton = () => {
           className='relative'
           aria-label={t('openNotifications')}
         >
-          <Bell
-            size={16}
-            strokeWidth={2}
-            aria-hidden='true'
-            className={cn('', {
-              'animate-pulse': unreadCount > 0,
-            })}
-          />
+          <Bell size={16} strokeWidth={2} aria-hidden='true' />
         </Button>
       </PopoverTrigger>
       <PopoverContent className='p-1 w-80'>

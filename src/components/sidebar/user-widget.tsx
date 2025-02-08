@@ -14,9 +14,11 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  SidebarMenuSkeleton,
   useSidebar,
 } from '@/components/ui/sidebar';
 import { useAuthActions } from '@/features/auth/hooks/use-auth-actions';
+import { useUser } from '@/hooks/use-user';
 import { useNavigate } from '@tanstack/react-router';
 import {
   ChevronsUpDown,
@@ -26,12 +28,6 @@ import {
   UserRound,
 } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-
-const SAMPLE_USER = {
-  name: 'John Doe',
-  email: 'johndoe@gmail.com',
-  avatar: undefined,
-};
 
 /**
  * @name UserWidget
@@ -45,6 +41,8 @@ export const UserWidget = () => {
   const { logout } = useAuthActions();
   const navigate = useNavigate();
 
+  const { user, isLoading } = useUser();
+
   const { state } = useSidebar();
   const isExpanded = state === 'expanded';
 
@@ -57,32 +55,36 @@ export const UserWidget = () => {
     <SidebarMenu>
       <SidebarMenuItem>
         <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <SidebarMenuButton
-              size='lg'
-              className='data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground flex items-center justify-center cursor-pointer'
-            >
-              <Avatar className='rounded-lg size-9'>
-                <AvatarImage src={SAMPLE_USER.avatar} alt={SAMPLE_USER.name} />
-                <AvatarFallback className='rounded-lg'>
-                  <UserRound size={20} strokeWidth={2} aria-hidden='true' />
-                </AvatarFallback>
-              </Avatar>
-              {isExpanded && (
-                <>
-                  <div className='grid flex-1 text-sm leading-tight text-left'>
-                    <span className='font-semibold truncate'>
-                      {SAMPLE_USER.name}
-                    </span>
-                    <span className='text-xs truncate'>
-                      {SAMPLE_USER.email}
-                    </span>
-                  </div>
-                  <ChevronsUpDown className='ml-auto size-4' />
-                </>
-              )}
-            </SidebarMenuButton>
-          </DropdownMenuTrigger>
+          {isLoading ? (
+            <SidebarMenuSkeleton showIcon />
+          ) : (
+            <DropdownMenuTrigger asChild>
+              <SidebarMenuButton
+                size='lg'
+                className='data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground flex items-center justify-center cursor-pointer'
+              >
+                <Avatar className='rounded-lg size-9'>
+                  <AvatarImage alt={`${user?.firstName} ${user?.lastName}`} />
+                  <AvatarFallback className='rounded-lg'>
+                    <UserRound size={20} strokeWidth={2} aria-hidden='true' />
+                  </AvatarFallback>
+                </Avatar>
+                {isExpanded && (
+                  <>
+                    <div className='grid flex-1 text-sm leading-tight text-left'>
+                      <span className='font-semibold truncate'>
+                        {user?.firstName}
+                      </span>
+                      <span className='text-xs truncate'>
+                        {user?.emailDetails?.email}
+                      </span>
+                    </div>
+                    <ChevronsUpDown className='ml-auto size-4' />
+                  </>
+                )}
+              </SidebarMenuButton>
+            </DropdownMenuTrigger>
+          )}
 
           <DropdownMenuContent
             className='w-(--radix-dropdown-menu-trigger-width) min-w-56 rounded-lg'
@@ -91,17 +93,17 @@ export const UserWidget = () => {
           >
             <DropdownMenuLabel className='flex items-start gap-2'>
               <Avatar className='rounded-lg size-9'>
-                <AvatarImage src={SAMPLE_USER.avatar} alt={SAMPLE_USER.name} />
+                <AvatarImage alt={`${user?.firstName} ${user?.lastName}`} />
                 <AvatarFallback className='rounded-lg'>
                   <UserRound size={20} strokeWidth={2} aria-hidden='true' />
                 </AvatarFallback>
               </Avatar>
               <div className='flex flex-col min-w-0'>
                 <span className='text-sm font-medium truncate text-foreground'>
-                  {SAMPLE_USER.name}
+                  {user?.firstName}
                 </span>
                 <span className='text-xs font-normal truncate text-muted-foreground'>
-                  {SAMPLE_USER.email}
+                  {user?.emailDetails?.email}
                 </span>
               </div>
             </DropdownMenuLabel>

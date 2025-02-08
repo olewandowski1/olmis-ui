@@ -55,6 +55,10 @@
       "openNotifications": "Abrir notificações",
       "markAllAsRead": "Marcar todas como lidas",
       "unread": "Não lida"
+    },
+    "HomePage": {
+      "systemName": "Sistema de Informação de Gestão Logística",
+      "explanation": "Aqui está uma visão geral do sistema."
     }
   }
 }

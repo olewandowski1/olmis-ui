@@ -9,7 +9,7 @@ const typographyOptions = {
   H1: ({ children, className }: TypographyProps) => (
     <h1
       className={cn(
-        'text-4xl font-extrabold tracking-tight scroll-m-20 lg:text-5xl',
+        'text-2xl font-extrabold tracking-tight scroll-m-20 lg:text-3xl',
         className
       )}
     >
