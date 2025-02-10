@@ -39,6 +39,7 @@ export const AppSidebar: React.FC<React.ComponentProps<typeof Sidebar>> = ({
           <MenuRoutes />
         </SidebarGroup>
       </SidebarContent>
+      <Separator />
       <SidebarFooter>
         <UserWidget />
       </SidebarFooter>

@@ -39,7 +39,7 @@ export type UserData = ApiUsersResponse &
   ApiUsersAuthResponse;
 
 const fetchUser = async (referenceDataUserId: string | null) => {
-  const { data: apiUsersResponse } = await axiosInstance.get<ApiUsersResponse>(
+  const { data: apiUserResponse } = await axiosInstance.get<ApiUsersResponse>(
     `/api/users/${referenceDataUserId}`
   );
 
@@ -48,15 +48,15 @@ const fetchUser = async (referenceDataUserId: string | null) => {
       `/api/userContactDetails/${referenceDataUserId}`
     );
 
-  const { data: apiUsersAuthResponse } =
+  const { data: apiUserAuthResponse } =
     await axiosInstance.get<ApiUsersAuthResponse>(
       `/api/users/auth/${referenceDataUserId}`
     );
 
   return {
-    ...apiUsersResponse,
+    ...apiUserResponse,
     ...apiUserContactDetailsResponse,
-    ...apiUsersAuthResponse,
+    ...apiUserAuthResponse,
   };
 };
 
