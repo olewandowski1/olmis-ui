@@ -1,4 +1,10 @@
 import { Button } from '@/components/ui/button';
+import {
+  DropdownMenu,
+  DropdownMenuCheckboxItem,
+  DropdownMenuContent,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
 import { Input } from '@/components/ui/input';
 import {
   Pagination,
@@ -32,6 +38,7 @@ import {
   ChevronLeft,
   ChevronRight,
   ChevronUp,
+  ColumnsIcon,
   Loader2,
   Plus,
   Search,
@@ -94,12 +101,12 @@ export const UsersTable = () => {
                 type='text'
                 aria-label='Search by username'
               />
-              <div className='pointer-events-none absolute inset-y-0 start-0 flex items-center justify-center ps-2 text-muted-foreground/60 peer-disabled:opacity-50'>
+              <div className='absolute inset-y-0 flex items-center justify-center pointer-events-none start-0 ps-2 text-muted-foreground/60 peer-disabled:opacity-50'>
                 <Search size={20} aria-hidden='true' />
               </div>
               {Boolean(table.getColumn('username')?.getFilterValue()) && (
                 <button
-                  className='absolute inset-y-0 end-0 flex h-full w-9 items-center justify-center rounded-e-md text-muted-foreground/60 outline-offset-2 transition-colors hover:text-foreground focus:z-10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-ring/70 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50'
+                  className='absolute inset-y-0 flex items-center justify-center h-full transition-colors end-0 w-9 rounded-e-md text-muted-foreground/60 outline-offset-2 hover:text-foreground focus:z-10 focus-visible:outline-2 focus-visible:outline-ring/70 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50'
                   aria-label='Clear filter'
                   onClick={() => {
                     table.getColumn('username')?.setFilterValue('');
@@ -113,55 +120,34 @@ export const UsersTable = () => {
               )}
             </div>
           </div>
-          {/* Right side */}
           <div className='flex items-center gap-3'>
-            {/* Filter by status */}
-            {/* <Popover>
-              <PopoverTrigger asChild>
-                <Button variant='outline'>
-                  <RiFilter3Line
-                    className='-ms-1.5 me-2 text-muted-foreground/60'
-                    size={20}
-                    aria-hidden='true'
-                  />
-                  Filter
-                  {selectedStatuses.length > 0 && (
-                    <span className='-me-1 ms-3 inline-flex h-5 max-h-full items-center rounded border border-border bg-background px-1 font-[inherit] text-[0.625rem] font-medium text-muted-foreground/70'>
-                      {selectedStatuses.length}
-                    </span>
-                  )}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant='outline' size='sm'>
+                  <ColumnsIcon />
+                  Columns
                 </Button>
-              </PopoverTrigger>
-              <PopoverContent className='min-w-36 p-3' align='end'>
-                <div className='space-y-3'>
-                  <div className='text-xs font-medium uppercase text-muted-foreground/60'>
-                    Status
-                  </div>
-                  <div className='space-y-3'>
-                    {uniqueStatusValues.map((value, i) => (
-                      <div key={value} className='flex items-center gap-2'>
-                        <Checkbox
-                          id={`${id}-${i}`}
-                          checked={selectedStatuses.includes(value)}
-                          onCheckedChange={(checked: boolean) =>
-                            handleStatusChange(checked, value)
-                          }
-                        />
-                        <Label
-                          htmlFor={`${id}-${i}`}
-                          className='flex grow justify-between gap-2 font-normal'
-                        >
-                          {value}{' '}
-                          <span className='ms-2 text-xs text-muted-foreground'>
-                            {statusCounts.get(value)}
-                          </span>
-                        </Label>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </PopoverContent>
-            </Popover> */}
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align='end'>
+                {table
+                  .getAllColumns()
+                  .filter((column) => column.getCanHide())
+                  .map((column) => {
+                    return (
+                      <DropdownMenuCheckboxItem
+                        key={column.id}
+                        className='capitalize'
+                        checked={column.getIsVisible()}
+                        onCheckedChange={(value) =>
+                          column.toggleVisibility(!!value)
+                        }
+                      >
+                        {column.columnDef.header}
+                      </DropdownMenuCheckboxItem>
+                    );
+                  })}
+              </DropdownMenuContent>
+            </DropdownMenu>
             <Button size='sm'>
               <Plus />
               Add User
@@ -233,9 +219,9 @@ export const UsersTable = () => {
               <TableRow className='hover:bg-transparent [&:first-child>td:first-child]:rounded-tl-md [&:first-child>td:last-child]:rounded-tr-md [&:last-child>td:first-child]:rounded-bl-md [&:last-child>td:last-child]:rounded-br-lg'>
                 <TableCell
                   colSpan={columns.length}
-                  className='h-18 text-center'
+                  className='text-center h-18'
                 >
-                  <Loader2 className='size-8 animate-spin mx-auto' />
+                  <Loader2 className='mx-auto size-8 animate-spin' />
                 </TableCell>
               </TableRow>
             ) : table.getRowModel().rows?.length ? (
@@ -259,7 +245,7 @@ export const UsersTable = () => {
               <TableRow className='hover:bg-transparent [&:first-child>td:first-child]:rounded-tl-md [&:first-child>td:last-child]:rounded-tr-md [&:last-child>td:first-child]:rounded-bl-md [&:last-child>td:last-child]:rounded-br-lg'>
                 <TableCell
                   colSpan={columns.length}
-                  className='h-18 text-center'
+                  className='text-center h-18'
                 >
                   No results.
                 </TableCell>
@@ -291,7 +277,7 @@ export const UsersTable = () => {
                     aria-label='Go to previous page'
                   >
                     <ChevronLeft />
-                    <span> Previous </span>
+                    <span className='hidden md:block'> Previous </span>
                   </Button>
                 </PaginationItem>
                 <PaginationItem>
@@ -302,7 +288,7 @@ export const UsersTable = () => {
                     disabled={!table.getCanNextPage()}
                     aria-label='Go to next page'
                   >
-                    <span> Next </span>
+                    <span className='hidden md:block'> Next </span>
                     <ChevronRight />
                   </Button>
                 </PaginationItem>

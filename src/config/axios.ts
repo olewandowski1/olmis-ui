@@ -1,4 +1,5 @@
 import { useLoginData } from '@/features/auth/store/login-data';
+import { useNavigate } from '@tanstack/react-router';
 import axios, { AxiosRequestConfig } from 'axios';
 
 export class AxiosInstanceError extends Error {
@@ -43,18 +44,17 @@ axiosInstance.interceptors.response.use(
     return response;
   },
   (error) => {
-    // If the request was not successful, log the error and return a rejected promise.
-    if (error.response) {
-      // The request was made and the server responded with a status code
-      // that falls out of the range of 2xx
-      console.error('[AXIOS_RESPONSE_ERROR]:', error.response.data);
-    } else if (error.request) {
-      // The request was made but no response was received
-      console.error('[AXIOS_REQUEST_ERROR]:', error.request);
-    } else {
-      // Something happened in setting up the request that triggered an Error
-      console.error('[AXIOS_ERROR]', error.message);
+    // If the request failed, check the status code. If it's 401, clear the access token.
+    // This will log the user out and redirect them to the login page.
+    if (error.status === 401) {
+      // Clear the access token from the Zustand store
+      const { clearLoginData } = useLoginData.getState();
+      const navigate = useNavigate();
+
+      clearLoginData();
+      navigate({ to: '/login' });
     }
+
     return Promise.reject(error);
   }
 );

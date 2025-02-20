@@ -14,7 +14,7 @@ export const Route = createFileRoute('/(app)/_app/users')({
  */
 function UsersPage() {
   return (
-    <div className='flex flex-col gap-4 p-4'>
+    <div className='flex flex-col gap-4 p-2 md:p-4'>
       <UsersBreadcrumb />
       <Separator />
       <UsersTable />
